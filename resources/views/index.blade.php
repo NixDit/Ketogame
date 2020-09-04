@@ -10,7 +10,7 @@
                 <div class="auto-container">
                     <div class="content-box">
                         <h2>EL<br>TORNEO</h2>
-                        <div class="btn-box"><a href="{{route('tournament.show')}}" class="theme-btn btn-style-one"><span class="btn-title">Me interesa</span></a></div>
+                        <div class="btn-box"><a href="{{route('tournament.show-all')}}" class="theme-btn btn-style-one"><span class="btn-title">Me interesa</span></a></div>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <div class="auto-container">
                     <div class="content-box">
                         <h2>MAS <br> GRANDE</h2>
-                        <div class="btn-box"><a href="{{route('tournament.show')}}" class="theme-btn btn-style-one"><span class="btn-title">Me interesa</span></a></div>
+                        <div class="btn-box"><a href="{{route('tournament.show-all')}}" class="theme-btn btn-style-one"><span class="btn-title">Me interesa</span></a></div>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="auto-container">
                     <div class="content-box">
                         <h2>DE <br> LATINOAMERICA</h2>
-                        <div class="btn-box"><a href="{{route('tournament.show')}}" class="theme-btn btn-style-one"><span class="btn-title">Me interesa</span></a></div>
+                        <div class="btn-box"><a href="{{route('tournament.show-all')}}" class="theme-btn btn-style-one"><span class="btn-title">Me interesa</span></a></div>
                     </div>
                 </div>
             </div>

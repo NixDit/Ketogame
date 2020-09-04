@@ -52,8 +52,8 @@ class User extends Authenticatable
     ];
 
     public function tournaments(){
-        // return $this->belongsToMany('App\Tournament')->withPivot(['picture_1','picture_2','picture_3','picture_4','picture_5']);
-        return $this->belongsToMany('App\Tournament');
+        return $this->belongsToMany('App\Tournament')->withPivot(['picture_1','picture_2','picture_3','picture_4','picture_5']);
+        // return $this->belongsToMany('App\Tournament');
     }
 
     public function epic(){
