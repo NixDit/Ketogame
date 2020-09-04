@@ -81,23 +81,23 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2 modal-container mt-2">
-                                    <span class="fab fa-youtube"></span>
+                                    <span class="fab fa-youtube"></span><br>
                                     <img class="elevation-2 align-middle @if($tournament->pivot->picture_1 != null) modal-img @endif" id="myImg" style="max-width: 100%; height: 80px; object-fit: contain;" src="{{ $tournament->pivot->picture_1 ? asset('storage/print-screens/'.$tournament->pivot->picture_1) : asset('images/avatars/default-white.jpg') }}" alt="Youtube">
                                 </div>
                                 <div class="col-md-2 modal-container mt-2">
-                                    <span class="fab fa-facebook-square"></span>
+                                    <span class="fab fa-facebook-square"></span><br>
                                     <img class="elevation-2 align-middle @if($tournament->pivot->picture_2 != null) modal-img @endif" style="max-width: 100%; height: 80px; object-fit: contain;" src="{{ $tournament->pivot->picture_2 ? asset('storage/print-screens/'.$tournament->pivot->picture_2) : asset('images/avatars/default-white.jpg') }}" alt="Facebook">
                                 </div>
                                 <div class="col-md-2 modal-container mt-2">
-                                    <span class="fab fa-twitch"></span>
+                                    <span class="fab fa-twitch"></span><br>
                                     <img class="elevation-2 align-middle @if($tournament->pivot->picture_3 != null) modal-img @endif" style="max-width: 100%; height: 80px; object-fit: contain;" src="{{ $tournament->pivot->picture_3 ? asset('storage/print-screens/'.$tournament->pivot->picture_3) : asset('images/avatars/default-white.jpg') }}" alt="Twitch">
                                 </div>
                                 <div class="col-md-2 modal-container mt-2">
-                                    <span class="fab fa-instagram"></span>
+                                    <span class="fab fa-instagram"></span><br>
                                     <img class="elevation-2 align-middle @if($tournament->pivot->picture_4 != null) modal-img @endif" style="max-width: 100%; height: 80px; object-fit: contain;" src="{{ $tournament->pivot->picture_4 ? asset('storage/print-screens/'.$tournament->pivot->picture_4) : asset('images/avatars/default-white.jpg') }}" alt="Instagram">
                                 </div>
                                 <div class="col-md-2 modal-container mt-2">
-                                    <span class="fab fa-twitter"></span>
+                                    <span class="fab fa-twitter"></span><br>
                                     <img class="elevation-2 align-middle @if($tournament->pivot->picture_5 != null) modal-img @endif" style="max-width: 100%; height: 80px; object-fit: contain;" src="{{ $tournament->pivot->picture_5 ? asset('storage/print-screens/'.$tournament->pivot->picture_5) : asset('images/avatars/default-white.jpg') }}" alt="Twitter">
                                 </div>
                                 <div class="col-md-2 modal-container mt-2 d-flex align-items-center justify-content-center">

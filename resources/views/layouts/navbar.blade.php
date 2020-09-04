@@ -40,9 +40,9 @@
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix pull-left">
-                                <li class="current dropdown"><a href="{{ Request::path() == '/' ? '#' : route('home.show') }}" class="scroll-to-target" data-target="html">Inicio</a></li>
-                                <li class="dropdown"><a href="{{ Request::path() == '/' ? '#' : route('home.show').'#about-me' }}" class="scroll-to-target" data-target="#about-me">Acerca de mí</a></li>
-                                <li class="dropdown"><a href="{{ Request::path() == '/' ? '#' : route('home.show').'#my-livestream' }}" class="scroll-to-target" data-target="#my-livestream">Mis directos</a></li>
+                                <li class="current dropdown"><a href="{{ Request::path() == '/' ? 'javascript:void(0)' : route('home.show') }}" class="scroll-to-target" data-target="html">Inicio</a></li>
+                                <li class="dropdown"><a href="{{ Request::path() == '/' ? 'javascript:void(0)' : route('home.show').'#about-me' }}" class="scroll-to-target" data-target="#about-me">Acerca de mí</a></li>
+                                <li class="dropdown"><a href="{{ Request::path() == '/' ? 'javascript:void(0)' : route('home.show').'#my-livestream' }}" class="scroll-to-target" data-target="#my-livestream">Mis directos</a></li>
                             </ul>
                             <ul class="navigation pull-right clearfix">
                                 <li class="dropdown"><a href="{{ route('tournament.show-all') }}">Torneos</a></li>
