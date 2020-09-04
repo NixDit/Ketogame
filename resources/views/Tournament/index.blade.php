@@ -198,7 +198,7 @@
 		<div class="modal-content" style="background-color: #0b0c0c;">
 			<div class="modal-header btm-grey">
 				<h5 class="modal-title" style="color: #b5b5b5;">Completa tu registro</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
+				<button type="button" class="close"  id="header_close_btn" data-dismiss="modal" aria-label="Close" style="color: #fff;">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
@@ -207,7 +207,7 @@
 			    	<div class="{{-- d-flex --}} dl-lg-flex  d-md-flex d-sm-block">
 				    	<div class="avatar-upload printscreen-upload">
 					        <div class="avatar-edit">
-					            <input type='file' class="imageUpload" id="image_Youtube" name="image_Youtube" data-socialmedia="YT" accept=".png, .jpg, .jpeg" />
+					            <input type='file' class="imageUpload" id="image_Youtube" name="image_Youtube" data-check="yt" data-socialmedia="YT" data-pluck="1" accept=".png, .jpg, .jpeg" />
 					            <label for="image_Youtube"></label>
 					        </div>
 					        <div class="avatar-preview">
@@ -218,7 +218,7 @@
 					    </div>
 					    <div class="avatar-upload printscreen-upload">
 					        <div class="avatar-edit">
-					            <input type='file' class="imageUpload" id="image_Facebook" name="image_Facebook" data-socialmedia="FB" accept=".png, .jpg, .jpeg" />
+					            <input type='file' class="imageUpload" id="image_Facebook" name="image_Facebook" data-check="fb" data-socialmedia="FB" data-pluck="2" accept=".png, .jpg, .jpeg" />
 					            <label for="image_Facebook"></label>
 					        </div>
 					        <div class="avatar-preview">
@@ -231,7 +231,7 @@
 					<div class="dl-lg-flex  d-md-flex d-sm-block justify-content-center">
 					    <div class="avatar-upload printscreen-upload">
 					        <div class="avatar-edit">
-					            <input type='file' class="imageUpload" id="image_Twitch" name="image_Twitch" data-socialmedia="Twitch" accept=".png, .jpg, .jpeg" />
+					            <input type='file' class="imageUpload" id="image_Twitch" name="image_Twitch" data-check="twitch" data-socialmedia="Twitch" data-pluck="3" accept=".png, .jpg, .jpeg" />
 					            <label for="image_Twitch"></label>
 					        </div>
 					        <div class="avatar-preview">
@@ -244,7 +244,7 @@
 					<div class="{{-- d-flex --}} dl-lg-flex  d-md-flex d-sm-block">
 					    <div class="avatar-upload printscreen-upload">
 					        <div class="avatar-edit">
-					            <input type='file' class="imageUpload" id="image_Instagram" name="image_Instagram" data-socialmedia="Instagram" accept=".png, .jpg, .jpeg" />
+					            <input type='file' class="imageUpload" id="image_Instagram" name="image_Instagram" data-check="instagram" data-socialmedia="Instagram" data-pluck="4" accept=".png, .jpg, .jpeg" />
 					            <label for="image_Instagram"></label>
 					        </div>
 					        <div class="avatar-preview">
@@ -255,7 +255,7 @@
 					    </div>
 					    <div class="avatar-upload printscreen-upload">
 					        <div class="avatar-edit">
-					            <input type='file' class="imageUpload" id="image_Twitter" name="image_Twitch" data-socialmedia="Twitter" accept=".png, .jpg, .jpeg" />
+					            <input type='file' class="imageUpload" id="image_Twitter" name="image_Twitch" data-check="twitter" data-socialmedia="Twitter" data-pluck="5" accept=".png, .jpg, .jpeg" />
 					            <label for="image_Twitter"></label>
 					        </div>
 					        <div class="avatar-preview">
@@ -269,14 +269,15 @@
 			</div>
 			<div class="p-4"><p><small><b>*Este torneo es completamente gratuito, seguirme en mis diferentes redes sociales es el unico requisito para estar registrado. <br>*Desmuestra que eres seguidor subiendo las capturas de pantalla correspondientes. <br>*El administrador de la pagina se encargara de verificar que los archivos sean legitimos.</b></small></p></div>
 			<div class="modal-footer">
-				<button class="theme-btn btn-style-one tiny-btn" style="line-height: 15px; font-size: 15px;">
-					<span class="btn-title tiny-btn-title" style="padding: 18px 20px;" data-dismiss="modal">Cerrar</span>
+				<button class="theme-btn btn-style-one tiny-btn" id="close_modal" style="line-height: 15px; font-size: 15px;">
+					<span class="btn-title tiny-btn-title" style="padding: 18px 20px;" data-dismiss="modal">Listo</span>
 				</button>
-				<button class="theme-btn btn-style-one tiny-btn" id="send_images" style="line-height: 15px; font-size: 15px;">
-					<span class="btn-title tiny-btn-title" style="padding: 18px 25px;">Subir</span>
+{{-- 				<button class="theme-btn btn-style-one tiny-btn d-none" id="ready_button" style="line-height: 15px; font-size: 15px;">
+					<span class="btn-title tiny-btn-title" style="padding: 18px 25px;">Listo</span> --}}
 				</button>
 				<input type="hidden" id="hidden_user_id" name="hidden_user_id">
 				<input type="hidden" id="hidden_tournament_id" name="hidden_tournament_id">
+				<input type="hidden" id="has-changed" value="0">
 			</div>
 		</div>
 	</div>

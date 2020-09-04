@@ -7,7 +7,8 @@ Route::get('/', 'HomeController@show')->name('home.show'); //Ruta del index
 Route::get('/tournament', 'TournamentController@index')->name('tournament.show');
 Route::get('/tournaments-all', 'TournamentController@showTournaments')->name('tournament.show-all');
 Route::post('/tournaments-sign-me', 'TournamentController@signMeUp')->name('tournament.sign-me')->middleware('auth');
-Route::post('/tournaments-send-images', 'TournamentController@sendImages')->name('tournament.send-images')->middleware('auth');
+// Route::post('/tournaments-send-images', 'TournamentController@sendImages')->name('tournament.send-images')->middleware('auth');
+Route::post('/tournaments-send-image', 'TournamentController@sendImage')->name('tournament.send-image')->middleware('auth');
 Route::get('/send-user-to-login', 'TournamentController@sendToLogin')->name('tournament.send-to-login')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::post('/send-message', 'MessagesController@sendMessage')->name('message.send');

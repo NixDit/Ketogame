@@ -124,23 +124,31 @@
 	}
 //ON HIDE MODAL RESET EVERYTHING
 $('#user-printscreen-modal').on('hidden.bs.modal', function (e) {
-	$('#image_preview_YT').css('background-image', "url(../images/icons/yt-icon.png)");
-	$('#image_preview_FB').css('background-image', "url(../images/icons/fb-icon.png)");
-	$('#image_preview_Twitch').css('background-image', "url(../images/icons/twitch-icon.png)");
-	$('#image_preview_Instagram').css('background-image', "url(../images/icons/instagram-icon.png)");
-	$('#image_preview_Twitter').css('background-image', "url(../images/icons/twitter-icon.png)");
-	$('.check-yt').addClass('d-none');
-	$('.check-fb').addClass('d-none');
-	$('.check-twitch').addClass('d-none');
-	$('.check-instagram').addClass('d-none');
-	$('.check-twitter').addClass('d-none');
-	$(this)
-		.find("input,textarea,select")
-			.val('')
-			.end()
-		.find("input[type=checkbox], input[type=radio]")
-			.prop("checked", "")
-			.end();
+	if($('#has-changed').val() == "1"){
+		swal('Correcto!', "Tus imagenes han sido subidas correctamente y seran revisadas por un administrador" , "success", {timer: 3000});
+		setTimeout(function(){
+			location.reload(true);
+		}, 3000);
+	}else{
+		$('#has-changed').val('0');
+		$('#image_preview_YT').css('background-image', "url(../images/icons/yt-icon.png)");
+		$('#image_preview_FB').css('background-image', "url(../images/icons/fb-icon.png)");
+		$('#image_preview_Twitch').css('background-image', "url(../images/icons/twitch-icon.png)");
+		$('#image_preview_Instagram').css('background-image', "url(../images/icons/instagram-icon.png)");
+		$('#image_preview_Twitter').css('background-image', "url(../images/icons/twitter-icon.png)");
+		$('.check-yt').addClass('d-none');
+		$('.check-fb').addClass('d-none');
+		$('.check-twitch').addClass('d-none');
+		$('.check-instagram').addClass('d-none');
+		$('.check-twitter').addClass('d-none');
+		$(this)
+			.find("input,textarea,select")
+				.val('')
+				.end()
+			.find("input[type=checkbox], input[type=radio]")
+				.prop("checked", "")
+				.end();
+	}
 });
 
 	//FUNCTION TO ADD IMAGE AND IMAGE PREVIEW TO INPUTS
@@ -157,6 +165,51 @@ $('#user-printscreen-modal').on('hidden.bs.modal', function (e) {
 	}
 	$(".imageUpload").change(function() {
 	    readURL(this, $(this).data('socialmedia'));
+
+	    //NEW CODE IN ORDER TO UPLOAD IMAGES ONE BY ONE
+	    uploadImage($(this).prop('id'), $(this).data('pluck'), $(this).data('check'));
 	});
+
+	function uploadImage(id, pluck, check){
+		let input_id 		= id;
+		let pluck_id 		= pluck;
+		let check_class		= check;
+		// showLoading(true);
+		var formData 		= new FormData();
+
+		var user_id 		= $('#hidden_user_id').val();
+		var tournament_id 	= $('#hidden_tournament_id').val();
+		var picture 		= $(`#${input_id}`).prop('files')[0];
+
+		formData.append('user_id', user_id);
+		formData.append('tournament_id', tournament_id);
+		formData.append('picture', picture);
+		formData.append('pluck', pluck);
+
+		$.ajaxSetup({
+		    headers: {
+		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		    }
+		})
+		$.ajax({
+			url: 'tournaments-send-image',
+			data: formData,
+			dataType: 'json',
+			contentType: false,
+			processData: false,
+			type: 'POST',
+			complete: function(){
+				showLoading(false);
+			}
+		}).done(function(response){
+			if(response.error){
+				swal("Error!", response.message , "error");
+			}else{
+				$('#ready_button').removeClass('d-none');
+				$(`.check-${check_class}`).removeClass('d-none');
+				$('#has-changed').val('1');
+			}
+		});
+	}
 
 })(window.jQuery);

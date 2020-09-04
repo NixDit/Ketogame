@@ -171,25 +171,22 @@ class TournamentController extends Controller
             'picture_5'		=> $picture_5
         ]);
 	}
-
-	public function sendImages(Request $request){
+	public function sendImage(Request $request){
 		$message 	= "";
 		$error 		= false;
 		try {
 			$record							= TournamentUser::where('tournament_id', $request->tournament_id)
 															->where('user_id', $request->user_id)
 															->first();
-
-			for ($i=1; $i < 6; $i++) {
-				if ($request->hasFile('picture_'.$i)) {
+			if ($request->hasFile('picture')) {
 					$record_old_picture 	= TournamentUser::where('tournament_id', $request->tournament_id)
 															->where('user_id', $request->user_id)
-															->pluck('picture_'.$i); //THIS LINE IS FOR GETTING JUST OLD PICTURE NAME
+															->pluck('picture_'.$request->pluck); //THIS LINE IS FOR GETTING JUST OLD PICTURE NAME
 		            $date           		= Carbon::now();
 		            $targets        		= array(' ', ':');
 		            $date           		= str_replace($targets, '-', $date);
-		            $image          		= $request->file('picture_'.$i);
-		            $fileName       		= 'print-screen-'. $i . '-' . $request->user_id . '-' . $date . '.' . $image->getClientOriginalExtension(); //TO AVOID DUPLICATED NAMES
+		            $image          		= $request->file('picture');
+		            $fileName       		= 'print-screen-'. $request->pluck . '-' . $request->user_id . '-' . $date . '.' . $image->getClientOriginalExtension(); //TO AVOID DUPLICATED NAMES
 		            $img            		= Image::make($image->getRealPath());
 
 					// Se comento a razón que en el modal-img se perdía un poco de resolución al mostrar la imagen
@@ -200,8 +197,8 @@ class TournamentController extends Controller
 		            $img->stream(); // <-- Key point
 		            $upload_image 			= Storage::disk('local')->put('public/print-screens/'.$fileName, $img, 'public');
 
-		            $update_image 			= $record->update([
-		                'picture_'.$i   	=> $fileName
+		            $update_image 						= $record->update([
+		                'picture_'.$request->pluck   	=> $fileName
 		            ]);
 
 	            	//IF PICTURE WAS UPDATED DELETE OLD FILE
@@ -210,10 +207,9 @@ class TournamentController extends Controller
 	                	Storage::delete($image_path);
 	            	}
 	       		}
-			}
-			$message 						= "Tus imagenes se han subido y seran revisadas por algun administrador";
+       		$message 						= "Tu imagen se ha subido y seran revisada por algun administrador";
 		} catch (Exception $e) {
-			$message 						= "Ocurrio un error al tratar de subir tus imagenes, intenta de nuevo mas tarde";
+			$message 						= "Ocurrio un error al tratar de subir tu imagen, intenta de nuevo mas tarde";
 			$error 							= true;
 		}
 		return response()->json([
@@ -221,6 +217,55 @@ class TournamentController extends Controller
             'message'   => $message
         ]);
 	}
+	// public function sendImages(Request $request){
+	// 	$message 	= "";
+	// 	$error 		= false;
+	// 	try {
+	// 		$record							= TournamentUser::where('tournament_id', $request->tournament_id)
+	// 														->where('user_id', $request->user_id)
+	// 														->first();
+
+	// 		for ($i=1; $i < 6; $i++) {
+	// 			if ($request->hasFile('picture_'.$i)) {
+	// 				$record_old_picture 	= TournamentUser::where('tournament_id', $request->tournament_id)
+	// 														->where('user_id', $request->user_id)
+	// 														->pluck('picture_'.$i); //THIS LINE IS FOR GETTING JUST OLD PICTURE NAME
+	// 	            $date           		= Carbon::now();
+	// 	            $targets        		= array(' ', ':');
+	// 	            $date           		= str_replace($targets, '-', $date);
+	// 	            $image          		= $request->file('picture_'.$i);
+	// 	            $fileName       		= 'print-screen-'. $i . '-' . $request->user_id . '-' . $date . '.' . $image->getClientOriginalExtension(); //TO AVOID DUPLICATED NAMES
+	// 	            $img            		= Image::make($image->getRealPath());
+
+	// 				// Se comento a razón que en el modal-img se perdía un poco de resolución al mostrar la imagen
+	// 	            $img->resize(800, 720, function ($constraint) {
+	// 	                $constraint->aspectRatio();
+	// 	            });
+
+	// 	            $img->stream(); // <-- Key point
+	// 	            $upload_image 			= Storage::disk('local')->put('public/print-screens/'.$fileName, $img, 'public');
+
+	// 	            $update_image 			= $record->update([
+	// 	                'picture_'.$i   	=> $fileName
+	// 	            ]);
+
+	//             	//IF PICTURE WAS UPDATED DELETE OLD FILE
+	//             	if($update_image){
+	//                 	$image_path 		= "/public/print-screens/" . $record_old_picture[0]; //[0] BECAUSE IS AN ARRAY WITH ONE ELEMENT THAT CONTAINS THE FILE NAME TO DELETE
+	//                 	Storage::delete($image_path);
+	//             	}
+	//        		}
+	// 		}
+	// 		$message 						= "Tus imagenes se han subido y seran revisadas por algun administrador";
+	// 	} catch (Exception $e) {
+	// 		$message 						= "Ocurrio un error al tratar de subir tus imagenes, intenta de nuevo mas tarde";
+	// 		$error 							= true;
+	// 	}
+	// 	return response()->json([
+ //            'error'     => $error,
+ //            'message'   => $message
+ //        ]);
+	// }
 
 	public function isRegistered($user_id, $tournament_id){
 		$record	= TournamentUser::where('tournament_id', $tournament_id)
