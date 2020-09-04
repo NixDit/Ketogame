@@ -82,7 +82,7 @@
                             <div class="row">
                                 <div class="col-md-2 modal-container mt-2">
                                     <span class="fab fa-youtube"></span>
-                                    <img class="elevation-2 align-middle @if($tournament->pivot->picture_1 != null) modal-img @endif" id="myImg" style="max-width: 100%; height: 80px; object-fit: contain;" src="{{ $tournament->pivot->picture_1 ? asset('storage/print-screens/'.$tournament->pivot->picture_1) : asset('images/avatars/default-white.jpg') }}" alt="Youtube">
+                                    {{-- <img class="elevation-2 align-middle @if($tournament->pivot->picture_1 != null) modal-img @endif" id="myImg" style="max-width: 100%; height: 80px; object-fit: contain;" src="{{ $tournament->pivot->picture_1 ? asset('storage/print-screens/'.$tournament->pivot->picture_1) : asset('images/avatars/default-white.jpg') }}" alt="Youtube"> --}}
                                 </div>
                                 <div class="col-md-2 modal-container mt-2">
                                     <span class="fab fa-facebook-square"></span>
